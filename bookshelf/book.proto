@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+option go_package = "github.com/woodysee/small-grpc-go-service/bookshelf";
+
+package bookshelf;
+
+message Author {
+    string name = 1;
+    string yearOfPublication = 2;
+}
+
+message Book {
+    string name = 1;
+    int32 isbn = 2;
+    Author author = 3;
+}
+
+message GetBookRequest {
+    string name = 1;
+}
+
+message GetBookResponse {
+    Book book = 1;
+}
+
+service BookHandler {
+    // Returns a book based on Book.name
+    rpc GetBook (GetBookRequest) returns (GetBookResponse) {}
+}
